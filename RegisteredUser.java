@@ -30,7 +30,7 @@ public class RegisteredUser extends GuestUser{
     public void postComment(DiscussionForum forum, String comment, String author) {
         forum.addComment(comment,author); //it will have an add comment method
     }
-    public void registerForMembership(String membershipType, String discount) {
+    public void registerForMembership(String membershipType, Double discount) {
         Payment newpayment = new Payment(membershipType, discount);
         newpayment.getPaymentDetails();
     }

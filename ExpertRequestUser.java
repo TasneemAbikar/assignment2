@@ -16,3 +16,4 @@ public class ExpertRequestUser extends RegisteredUser {
         String response = "Answer for post: ";
         return expertResponse;
     }
+}
