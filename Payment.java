@@ -23,7 +23,7 @@ public class Payment {
                 break;
         }
         Random rand = new Random();
-        long min = 1000000000000L; // will generate a random 13 digit number
+        long min = 1000000000000L;
         long max = 9999999999999L;
         this.recieptID = rand.nextLong() % (max - min + 1) + min;
     }
@@ -38,3 +38,4 @@ public class Payment {
         return paymentDetails;
     }
 }
+
