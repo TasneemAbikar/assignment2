@@ -4,12 +4,12 @@ import java.awt.Image;
 public class RegisteredUser extends GuestUser {
     protected String profile;
     protected Image profilepic;
-    protected List existingQuestions;
-    protected List existingAnswers;
-    protected List existingComments;
+    protected List<Post> existingQuestions;
+    protected List<Post> existingAnswers;
+    protected List<String> existingComments;
     protected Boolean profileType;
 
-    public RegisteredUser(String profile, Image profilepic, List existingQuestions, List existingAnswers, List existingComments, Boolean profileType, String sessionID, int sessionTime){ 
+    public RegisteredUser(String profile, Image profilepic, List<Post> existingQuestions, List<Post> existingAnswers, List<String> existingComments, Boolean profileType, String sessionID, int sessionTime) {
         super(sessionID, sessionTime);
         this.profile = profile;
         this.profilepic = profilepic;
@@ -18,27 +18,27 @@ public class RegisteredUser extends GuestUser {
         this.existingComments = existingComments;
         this.profileType = profileType;
     }
-    
-    public void postQuestion(String title, String question, String author) { 
+
+    public void postQuestion(String title, String question, String author) {
         Post newPost = new Post(title, question, author);
+        existingQuestions.add(newPost);
         DiscussionForum forum = new DiscussionForum(newPost);
     }
 
-    public void postAnswer(DiscussionForum forum, String answer, String author) {
-        forum.addAnswer(answer, author);
+    public void postAnswer(Post post, String answer, String author) {
+        post.addAnswer(answer, author);
     }
 
-    public void postComment(DiscussionForum forum, String comment, String author) {
-        forum.addComment(comment, author);
+    public void postComment(Post post, String comment, String author) {
+        post.addComment(comment, author);
     }
 
     public MembershipUser registerForMembership(String membershipType, Double discount) {
-        Payment newpayment = new Payment(membershipType, discount);
-        newpayment.processPayment();
-        String membershipDetails = newpayment.getPaymentDetails();
-        
-        // Create a new membership user and return
+        Payment newPayment = new Payment(membershipType, discount);
+        newPayment.processPayment();
+        String membershipDetails = newPayment.getPaymentDetails();
+
+        //
         return new MembershipUser(membershipType, membershipDetails);
     }
 }
-
