@@ -6,16 +6,14 @@ public class GuestUser {
     protected int sessionTime;
 
     private Account createAccount(String firstName, String lastName, String email, String password) {
-        // Generate a random account ID
         Random rand = new Random();
-        int accountID = rand.nextInt(1000000); // Adjust the range as needed
+        int accountID = rand.nextInt(10000);
+        //for the 10000, its the max amount of accounts that can be created in the platform (infinity seemed to be working a bit wrong, so i just chose 10000)
         
-        // Create and return an account with the generated ID
         return new Account(accountID, firstName, lastName, email, password);
     }
 
     public List<Post> searchForQuestions(String query, boolean filters) {
-        // Create a new search instance and return results
         Search search = new Search(query, filters);
         return search.returnResults();
     }
