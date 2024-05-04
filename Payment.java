@@ -24,7 +24,7 @@ public class Payment {
         long min = 1000000000000L;
         long max = 9999999999999L;
         this.receiptID = rand.nextLong() % (max - min + 1) + min;
-        this.applicableDiscount = discount; // Initialize the applicable discount
+        this.applicableDiscount = discount;
     }
 
     public void processPayment() {
