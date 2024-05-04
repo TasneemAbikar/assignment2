@@ -19,7 +19,7 @@ public class MembershipUser extends RegisteredUser{
         membershipType = "None";
         remainingMembershipPlan = 0;
     }
-    public void requestExpertResponse(Post post) { //needs to request a response from any expert request user.
+    public void requestExpertResponse(Post post) {
         
     }
 }
