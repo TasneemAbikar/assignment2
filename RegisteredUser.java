@@ -7,9 +7,9 @@ public class RegisteredUser extends GuestUser {
     protected List<Post> existingQuestions;
     protected List<Post> existingAnswers;
     protected List<String> existingComments;
-    protected Boolean profileType;
+    protected boolean profileType;
 
-    public RegisteredUser(String profile, Image profilepic, List<Post> existingQuestions, List<Post> existingAnswers, List<String> existingComments, Boolean profileType, String sessionID, int sessionTime) {
+    public RegisteredUser(String profile, Image profilepic, List<Post> existingQuestions, List<Post> existingAnswers, List<String> existingComments, boolean profileType, String sessionID, int sessionTime) {
         super(sessionID, sessionTime);
         this.profile = profile;
         this.profilepic = profilepic;
@@ -22,15 +22,6 @@ public class RegisteredUser extends GuestUser {
     public void postQuestion(String title, String question, String author) {
         Post newPost = new Post(title, question, author);
         existingQuestions.add(newPost);
-        DiscussionForum forum = new DiscussionForum(newPost);
-    }
-
-    public void postAnswer(Post post, String answer, String author) {
-        post.addAnswer(answer, author);
-    }
-
-    public void postComment(Post post, String comment, String author) {
-        post.addComment(comment, author);
     }
 
     public MembershipUser registerForMembership(String membershipType, Double discount) {
@@ -38,7 +29,6 @@ public class RegisteredUser extends GuestUser {
         newPayment.processPayment();
         String membershipDetails = newPayment.getPaymentDetails();
 
-        //
         return new MembershipUser(membershipType, membershipDetails);
     }
 }
