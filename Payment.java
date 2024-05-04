@@ -1,9 +1,7 @@
-import java.util.List;
 import java.util.Random;
-import java.awt.Image;
 
 public class Payment {
-    private long recieptID;
+    private long receiptID;
     private Double applicableDiscount;
     private Double paymentAmount;
 
@@ -25,17 +23,18 @@ public class Payment {
         Random rand = new Random();
         long min = 1000000000000L;
         long max = 9999999999999L;
-        this.recieptID = rand.nextLong() % (max - min + 1) + min;
+        this.receiptID = rand.nextLong() % (max - min + 1) + min;
+        this.applicableDiscount = discount; // Initialize the applicable discount
     }
 
     public void processPayment() {
         API api = new API();
-        api.authenicatePayment();
+        api.authenticatePayment();
     }
+
     public String getPaymentDetails() {
-        Double discountedAmount = paymentAmount - (paymentAmount* applicableDiscount);
-        String paymentDetails = "Reciept No." + recieptID + ", Amount Paid: $" + discountedAmount; 
+        Double discountedAmount = paymentAmount - (paymentAmount * applicableDiscount);
+        String paymentDetails = "Receipt No." + receiptID + ", Amount Paid: $" + discountedAmount; 
         return paymentDetails;
     }
 }
-
